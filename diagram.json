@@ -4,22 +4,26 @@
   "editor": "wokwi",
   "parts": [
     { "type": "wokwi-breadboard-half", "id": "bb1", "top": -262.2, "left": -122, "attrs": {} },
-    { "type": "wokwi-arduino-uno", "id": "uno", "top": 10.2, "left": -250.2, "attrs": {} },
-    { "type": "wokwi-relay-module", "id": "relay1", "top": -47.8, "left": 38.4, "attrs": {} },
-    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -236, "left": -132.18, "attrs": {} }
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 67.8, "left": -355.8, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -47.8, "left": 67.2, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -236, "left": -132.18, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay2", "top": 38.6, "left": 76.8, "attrs": {} }
   ],
   "connections": [
+    [ "uno:5V", "bb1:bp.1", "red", [ "v0" ] ],
+    [ "uno:GND.1", "bb1:bn.1", "black", [ "v0" ] ],
+    [ "bb1:bn.2", "bb1:3b.j", "green", [ "v0" ] ],
+    [ "bb1:bp.2", "bb1:1b.j", "green", [ "v0" ] ],
+    [ "relay1:GND", "bb1:bn.3", "black", [ "h0" ] ],
+    [ "relay1:VCC", "bb1:bp.3", "red", [ "h0" ] ],
     [ "pir1:VCC", "bb1:1b.f", "", [ "$bb" ] ],
     [ "pir1:OUT", "bb1:2b.f", "", [ "$bb" ] ],
     [ "pir1:GND", "bb1:3b.f", "", [ "$bb" ] ],
-    [ "uno:5V", "bb1:bp.1", "red", [ "v0" ] ],
-    [ "uno:GND.1", "bb1:bn.1", "black", [ "v0" ] ],
-    [ "uno:0", "pir1:OUT", "green", [ "v0" ] ],
-    [ "bb1:bn.2", "bb1:3b.j", "green", [ "v0" ] ],
-    [ "bb1:bp.2", "bb1:1b.j", "green", [ "v0" ] ],
-    [ "uno:1", "relay1:IN", "green", [ "v0" ] ],
-    [ "relay1:GND", "bb1:bn.3", "black", [ "h0" ] ],
-    [ "relay1:VCC", "bb1:bp.3", "red", [ "h0" ] ]
+    [ "bb1:bp.4", "relay2:VCC", "green", [ "v0" ] ],
+    [ "bb1:bn.4", "relay2:GND", "green", [ "v0" ] ],
+    [ "relay2:IN", "uno:2", "green", [ "h0" ] ],
+    [ "uno:4", "relay1:IN", "green", [ "v0" ] ],
+    [ "uno:7", "pir1:OUT", "purple", [ "v-38.4", "h80.4", "v-182.4" ] ]
   ],
   "dependencies": {}
 }
